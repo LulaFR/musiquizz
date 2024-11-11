@@ -1,0 +1,40 @@
+{
+  "users": [
+    {
+      "id": "dac5",
+      "password": "99887",
+      "accessToken": "",
+      "topRanking": []
+    },
+    {
+      "id": "Lula12",
+      "password": "121212",
+      "accessToken": "",
+      "topRanking": []
+    },
+    {
+      "id": "Gostita",
+      "password": "070707",
+      "accessToken": "",
+      "topRanking": []
+    },
+    {
+      "id": "chechu31",
+      "password": "313131",
+      "accessToken": "",
+      "topRanking": []
+    },
+    {
+      "id": "gusti05",
+      "password": "050505",
+      "accessToken": "",
+      "topRanking": []
+    },
+    {
+      "id": "delfe",
+      "password": "dtf123",
+      "accessToken": "",
+      "topRanking": []
+    }
+  ]
+}

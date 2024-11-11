@@ -1,0 +1,87 @@
+body {
+    width: 100%;
+    min-height: 100%;
+
+    margin: 0;
+    padding: 0;
+    padding-bottom: 2rem;
+
+    box-sizing: border-box;
+
+    background-color: #3f795072;
+}
+
+#container {
+    width: 100%;
+    min-height: 100vh;
+
+    margin: 0;
+
+    box-sizing: border-box;
+    position: relative;
+}
+
+h1 {
+    font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+    font-size: 10rem;
+    color: #3f795072;
+
+    display: block;
+    justify-self: center;
+
+    padding-top: 5rem;
+    padding-bottom: 0;
+
+    z-index: 0;
+
+}
+
+#homePageSection {
+    width: 45%;
+    height: 17rem;
+
+    display: block;
+    align-content: center;
+    justify-content: space-around;
+
+    margin: auto;
+    /* margin-top: 3rem; */
+    margin-bottom: 2rem;
+    border-radius: 20%;
+    border-bottom-left-radius: 10rem;
+    border-bottom-right-radius: 10rem;
+
+    background-color: #ac83c375;
+}
+
+#loginDiv {
+    width: fit-content;
+    height: fit-content;
+
+    margin: auto;
+    border-radius: 4rem;
+    padding: 0.1rem 1rem;
+    
+    display: flex;
+    flex-direction: row;
+
+    background-color: rgb(71, 134, 89)
+}
+
+#loginDiv:hover {
+    background-color: rgb(63, 119, 79)
+}
+
+svg {
+    width: fit-content;
+    height: fit-content;
+
+    display: flex;
+
+    margin: auto;
+    padding-right: 0.5rem;
+}
+
+h4 {
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+}

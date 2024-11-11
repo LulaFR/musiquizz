@@ -1,0 +1,113 @@
+body{
+    background-image: url(../../../../../imagenes/main-bg.svg);
+    background-repeat: no-repeat; /* Evita que la imagen se repita */
+    background-position: center; /* Centra la imagen en ambos ejes*/
+    background-size: cover; /* Asegura que la imagen cubra toda el área visible */
+    background-attachment: fixed;
+}
+
+/*HEADER Y BOTÓN USUARIO--------------------------------------------------------------------------------------------------------*/
+
+.header{
+    display: flex;
+    justify-content:flex-end; /*posiciona el contenido a la derecha*/
+    /* margin-bottom: 0; */
+    padding: 1% 2%;
+    top: 0;
+}
+
+#user-btn{
+    width: 3.2rem;
+    height: 3.2rem;
+    border-radius: 2rem;
+    border-color: var(--violeta-claro);
+    background-color: transparent; /*placeholder foto usuario*/
+}
+
+#user-btn:hover{
+    box-shadow: 1px 0px 5px var(--violeta-claro);
+}
+
+/*MAIN------------------------------------------------------------------------------------------------------------------------*/
+
+.main{
+    padding-bottom: 3rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+#title{
+    font-family: var(--tipografia-principal);
+    font-size: 4rem;
+    font-weight: 100;
+}
+
+h2{
+    font-family: var(--tipografia-secundaria);
+    font-size: 1.3rem;
+    font-weight: 100;
+}
+
+.game-modes{
+    display: flex;
+    flex-wrap: wrap;
+    margin: 40px 20px 10px 20px;
+    align-items: center;
+    justify-content: space-evenly;
+    gap: 12rem; /*espacio entre tarjetas de modo de juego*/
+}
+
+.mode{
+    /*padding: 1rem;*/
+    /*border: 1px solid;
+    border-color: var(--verde-oscuro);
+    border-radius: 0.5rem;*/
+    border: none;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.75rem; /*espacio entre botón y nombre del modo*/
+    font-family: var(--tipografia-secundaria);
+    font-size: 1.5rem;
+}
+
+.mode-btn{
+    background-color: transparent;
+    border: solid 1px;
+    border-radius: 0.5rem;
+    border-color: black;
+    padding: 1rem;
+    width: 12rem;
+    height: 6rem;
+}
+
+.mode-btn:hover{
+    background-color: var(--marron-claro);
+}
+
+.mode-btn:active {
+    background-color: var(--marron-claro-transparente);
+}
+
+.select {
+    background-color: var(--marron-claro);
+}
+
+#play-btn{
+    border: none;
+    background-color: transparent;
+
+    width: auto;
+    font-family: var(--tipografia-principal);
+    font-size: 1rem;
+    font-weight: 250;
+
+    margin-top: 0;
+    padding-top: 0;
+}
+
+#play-btn:active{
+    font-size: 0.85rem;
+}

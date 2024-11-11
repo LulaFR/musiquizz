@@ -1,0 +1,195 @@
+body{
+    background-image: url(../../../../../imagenes/main-bg.svg);
+    background-repeat: no-repeat; /* Evita que la imagen se repita */
+    background-position: center; /* Centra la imagen en ambos ejes*/
+    background-size: cover; /* Asegura que la imagen cubra toda el área visible */
+    background-attachment: fixed;
+
+    min-height: 100vh;
+}
+
+.header{
+    display: flex;
+    justify-content:space-between; /*posiciona el contenido a la derecha*/
+    /* margin-bottom: 0; */
+    padding: 1% 2% 0.5% 2%;
+    top: 0;
+}
+
+#goBackBtn {
+    display: flex;
+    justify-self: end;
+
+    font-family: var(--tipografia-secundaria);
+    font-size: 1.4rem;
+    font-weight: 100;
+
+    color: black;
+    background-color: var(--marron-oscuro-transparente);
+
+    /* margin-top: 1rem; */
+    margin-top: 0.1rem;
+    margin-right: 1rem;
+    margin-bottom: 0.3rem;
+    margin-left: 1.3rem;
+    border: solid 1px;
+    border-color: var(--marron-oscuro);
+    border-radius: 0.4rem;
+    padding: 0.1rem 0.8rem;
+    padding-bottom: 0;
+
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+#goBackBtn:hover{
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    /* box-shadow: 1px 0px 5px var(--violeta-claro); */
+    background-color: var(--marron-oscuro);
+}
+
+#user-btn{
+    width: 3.2rem;
+    height: 3.2rem;
+    border-radius: 2rem;
+    border-color: var(--violeta-claro);
+    background-color: transparent; /*placeholder foto usuario*/
+}
+
+#user-btn:hover{
+    box-shadow: 1px 0px 5px var(--violeta-claro);
+}
+
+main {
+    min-height: 100vh;
+    padding-top: 0.2rem;
+
+}
+
+#subContainer {
+    /* display: flex;
+
+    flex-direction: row; */
+
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between; /* Mantiene espacio entre los elementos */
+    align-items: flex-start; /* Alinea ambos elementos en la parte superior */
+    gap: 1rem; /* Espacio entre columnas */
+    height: 100%; /* Asegura que use la altura de su contenedor */
+}
+
+#resultsDiv {
+    display: grid;
+
+    grid-template-columns: repeat(auto-fit, minmax(12.5rem, 1fr));
+    gap: 1rem;
+
+    background-color: var(--marron-oscuro-transparente);
+
+    width: 50rem;
+    height: 22rem;
+
+    justify-items: baseline;
+    align-self: stretch;
+    /* flex-direction: row; */
+    margin: 0 2rem 0 3rem;
+    border-radius: 0.2rem;
+    padding: 1rem 1rem 0 1rem;
+
+    box-shadow: 1px 0px 5px var(--marron-oscuro);
+    box-sizing: border-box;
+}
+
+.active-search {
+    overflow: scroll;
+    overflow-x: hidden;
+    scrollbar-color: var(--marron-oscuro-transparente);
+    scrollbar-base-color: var(--marron-oscuro-transparente);
+    scrollbar-arrow-color: var(--marron-oscuro);
+    scrollbar-highlight-color: var(--marron-oscuro);
+}
+
+#albumCard {
+    width: 100%;
+    height: 100%;
+
+    /* margin: 0.5rem; */
+    border-radius: 0.2rem;
+    padding: 0.5rem;
+    
+
+    background-color: var(--marron-claro-transparente);
+
+    box-shadow: 1px 0px 5px var(--marron-oscuro-transparente);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+#albumCard:hover {
+    background-color: var(--marron-claro);
+}
+
+/* .select {
+    background-color: var(--marron-claro);
+} */
+
+.right-div {
+    display: flex;
+    flex-direction: column;
+}
+
+#selectedCard {
+    display: flex;
+
+    justify-self: end;
+    flex-direction: column;
+    justify-content: center;
+
+    width: 18rem;
+    height: 17.5rem;
+
+    margin-right: 3rem;
+    /* padding: 2rem; */
+
+    background-color: var(--marron-oscuro-transparente);
+
+    box-shadow: 1px 0px 5px var(--marron-oscuro);
+    box-sizing: border-box;
+}
+
+.albumItem {
+    display: block;
+    margin: 0.1rem auto;
+    text-align: center;
+    justify-self: center;;
+}
+
+#playBtn {
+    display: flex;
+
+    justify-self: end;
+    align-self: end;
+
+    justify-content: center;
+    font-size: 1.5rem;
+
+    width: 18rem;
+    height: fit-content;
+
+    margin-top: 0.5rem;
+    margin-right: 3rem;
+    padding: 0.1rem;
+
+    background-color: var(--marron-oscuro-transparente);
+    border-color: var(--marron-oscuro-transparente);
+    border-radius: 0.2rem;
+    border-style: solid;
+    border-width: 0.1rem;
+
+    /* box-shadow: 1px 0px 5px var(--marron-oscuro); */
+
+    font-family: var(--tipografia-principal);
+}
+
+p {
+    font-family: var(--tipografia-secundaria);
+}

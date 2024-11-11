@@ -1,0 +1,53 @@
+/*VARIABLES---------------------------------------------------------------------------------------------------------------------*/
+/*VARIABLES---------------------------------------------------------------------------------------------------------------------*/
+
+@import url('https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Rock+Salt&display=swap');
+
+@import url('https://fonts.googleapis.com/css2?family=Itim&family=Patrick+Hand&display=swap');
+
+:root{
+    --verde-claro: #1ED65E; /*color de spotify*/
+    --verde-oscuro: #3D8155;
+    --violeta-claro: #7E1ED6;
+    --violeta-claro-transparente: #7E1ED6aa;
+    --violeta-oscuro: #483757;
+    --marron-claro: #D68E1E;
+    --marron-oscuro: #574A37;
+
+    --tipografia-principal: "Rock Salt", cursive;
+    --tipografia-secundaria: "Patrick Hand", cursive;
+}
+
+/*GENERAL--------------------------------------------------------------------------------------------------------------------------*/
+
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+/*FOOTER------------------------------------------------------------------------------------------------------------------------*/
+
+footer{
+    background-color: var(--violeta-claro);
+    align-items: center;
+    margin: 0;
+    padding: 0.5rem;
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+}
+
+.footer-div{
+    align-items: center;
+    padding: 0.3rem;
+    text-align: center;
+}
+
+.footer-link{
+    color: black;
+    padding: 1rem;
+    font-family: var(--tipografia-secundaria);
+    text-decoration: none;
+  
+}

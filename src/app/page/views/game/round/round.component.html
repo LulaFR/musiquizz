@@ -1,0 +1,23 @@
+<div id="container">
+    <section id="questionSection">
+        <img [src]="round.question.img" alt="" width="200" height="200">
+        <audio *ngIf="audioSrc" controls autoplay>
+            <source [src]="audioSrc" type="audio/mpeg">
+        </audio>
+    </section>
+    <section id="optionsSection">
+        <!-- <p class="option">Opción</p>
+        <p class="option">Opción</p>
+        <p class="option">Opción</p>
+        <p class="option">Opción</p> -->
+        <p class="option" (click)="chooseOption(round.options[0].id)">{{round.options[0].name}}</p>
+        <p class="option" (click)="chooseOption(round.options[1].id)">{{round.options[1].name}}</p>
+        <p class="option" (click)="chooseOption(round.options[2].id)">{{round.options[2].name}}</p>
+        <p class="option" (click)="chooseOption(round.options[3].id)">{{round.options[3].name}}</p>
+    </section>
+</div>
+@if (btnMsg == 'Siguiente') {
+    <button id="next" (click)="next()">{{btnMsg}}>></button>
+} @else {
+    <button id="next" (click)="seeResults()">{{btnMsg}}>></button> //cambiar método a redirect
+}

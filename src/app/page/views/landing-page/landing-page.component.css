@@ -1,0 +1,169 @@
+/*VARIABLES---------------------------------------------------------------------------------------------------------------------*/
+
+@import url('https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Rock+Salt&display=swap');
+
+@import url('https://fonts.googleapis.com/css2?family=Itim&family=Patrick+Hand&display=swap');
+
+:root{
+    --verde-claro: #1ED65E; /*color de spotify*/
+    --verde-oscuro: #3D8155;
+    --violeta-claro: #7E1ED6;
+    --violeta-claro-transparente: #7E1ED6aa;
+    --violeta-oscuro: #483757;
+    --marron-claro: #D68E1E;
+    --marron-oscuro: #574A37;
+
+    --tipografia-principal: "Rock Salt", cursive;
+    --tipografia-secundaria: "Patrick Hand", cursive;
+}
+
+/*GENERAL--------------------------------------------------------------------------------------------------------------------------*/
+
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+body{
+    background-image: url(../../../../imagenes/main-bg.svg);
+    background-repeat: no-repeat; /* Evita que la imagen se repita */
+    background-position: center; /* Centra la imagen en ambos ejes*/
+    background-size: cover; /* Asegura que la imagen cubra toda el área visible */
+    background-attachment: fixed;
+}
+
+
+/*MAIN------------------------------------------------------------------------------------------------------------------------*/
+
+.main{
+    padding-bottom: 3rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0;
+}
+
+#title{
+    font-family: var(--tipografia-principal);
+    font-size: 6rem;
+    font-weight: 100;
+    z-index: 0;
+    padding: 0;
+}
+
+#landing-info{
+    width: auto;
+    height: auto;
+    display: flex;
+    gap: 7rem;
+    align-items:center;
+}
+
+/* #description-div {
+    width: auto;
+} */
+
+#site-description{
+    text-align: center;
+    font-family: var(--tipografia-secundaria);
+    font-weight: 100;
+    font-size: 1.5rem;
+    width: 25rem;
+}
+
+#login{
+    border: solid 1px;
+    border-radius: 0.4rem;
+    border-color: var(--violeta-claro);
+    font-family: var(--tipografia-secundaria);
+
+    height: auto;
+    width: auto;
+
+    margin-top: 0;
+    margin-bottom: 3rem;
+    /* margin-right: 7rem; */
+    padding-top: 0;
+
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+
+    z-index: 1;
+}
+
+/* .login-btn{
+    font-family: var(--tipografia-secundaria);
+    font-size: 1.4rem;
+    font-weight: 100;
+    color: black;
+    background-color: var(--violeta-claro-transparente);
+    border: solid 1px;
+    border-color: var(--violeta-oscuro);
+    border-radius: 0.4rem;
+    padding: 0.2rem;
+
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.login-btn:hover{
+    box-shadow: 1px 0px 5px var(--violeta-claro);
+    background-color: var(--violeta-claro);
+}
+
+.login-input{
+    font-family: var(--tipografia-secundaria);
+    color: black;
+    font-size: 1.2rem;
+    text-align: center;
+    background-color: transparent;
+    border: solid 1px;
+    border-color: var(--violeta-claro);
+    border-radius: 0.4rem;
+}
+
+.login-input::placeholder{
+    color: black;
+} */
+
+.login-link{
+    font-family: var(--tipografia-secundaria);
+    color: black;
+    text-decoration: none;
+    font-size: 1rem;
+    background-color: transparent;
+    border: none;
+}
+
+.login-link:hover{
+    text-decoration: underline;
+    color: var(--violeta-oscuro);
+}
+
+/*FOOTER------------------------------------------------------------------------------------------------------------------------*/
+
+footer{
+    background-color: var(--violeta-claro);
+    align-items: center;
+    padding: 0.5rem;
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+}
+
+.footer-div{
+    align-items: center;
+    padding: 0.3rem;
+    text-align: center;
+}
+
+.footer-link{
+    color: black;
+    padding: 1rem;
+    font-family: var(--tipografia-secundaria);
+    text-decoration: none;
+  
+}

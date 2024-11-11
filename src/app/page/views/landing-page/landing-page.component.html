@@ -1,0 +1,43 @@
+<body>
+    <header></header>
+
+    <main class="main">
+
+        <h1 id="title">Musiquizz</h1>
+
+        <div id="landing-info">
+
+            <section id="description-div">
+                <p id="site-description">
+                    ¿Qué tan rápido reconocés las canciones de tus artistas favoritos? <br>
+                    ¿Conocés los gustos musicales de tus amigos? <br>
+                    ¡Ponete a prueba con Musiquizz y comprobalo! ;)
+                </p>   
+            </section>
+            
+        
+            <section id="login">
+                @if (disableSignIn) {
+                    <app-log-in (eventEmitter)="logIn($event)"></app-log-in>
+                    <button class="login-link" (click)="activateSignIn()">¿No tenés una cuenta? Registrate</button>
+                }
+                @if (disableLogIn) {
+                    <app-sign-in (eventEmitter)="activateLogIn()"></app-sign-in>
+                    <button class="login-link" (click)="activateLogIn()">Ya tenés una cuenta? Iniciá sesión</button>
+                }
+            </section>
+
+        </div>
+
+    </main>
+
+    <footer>
+        <div class="footer-div">
+            <a class="footer-link" href="https://github.com/LulaFR">Luciana Fenoy Rivas</a> ●
+            <a class="footer-link" href="">Valentina Landaburu</a> ●
+            <a class="footer-link" href="">Fausto Rodriguez</a> ●
+            <a class="footer-link" href="">Franco Vello</a>
+        </div>
+    </footer>
+</body>
+

@@ -1,1 +1,64 @@
-/* You can add global styles to this file, and also import other style files */
+/*VARIABLES---------------------------------------------------------------------------------------------------------------------*/
+
+@import url('https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Rock+Salt&display=swap');
+
+@import url('https://fonts.googleapis.com/css2?family=Itim&family=Patrick+Hand&display=swap');
+
+:root{
+    --verde-claro: #1ED65E; /*color de spotify*/
+    --verde-oscuro: #3D8155;
+    --violeta-claro: #7E1ED6;
+    --violeta-claro-transparente: #7E1ED6AA;
+    --violeta-oscuro: #483757;
+    --violeta-oscuro-transparente: #483757AA;
+    --marron-claro: #D68E1E;
+    --marron-claro-transparente: #D68E1EAA;
+    --marron-oscuro: #574A37;
+    --marron-oscuro-transparente: #574A37AA;
+
+    --tipografia-principal: "Rock Salt", cursive;
+    --tipografia-secundaria: "Patrick Hand", cursive;
+}
+
+/*GENERAL--------------------------------------------------------------------------------------------------------------------------*/
+
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+body {
+    overflow-x: hidden;
+    overflow-y: hidden;
+}
+
+main {
+    margin: 0;
+}
+
+/*FOOTER------------------------------------------------------------------------------------------------------------------------*/
+
+footer{
+    background-color: var(--violeta-claro);
+    align-items: center;
+    margin: 0;
+    padding: 0.5rem;
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+}
+
+.footer-div{
+    align-items: center;
+    padding: 0.3rem;
+    text-align: center;
+}
+
+.footer-link{
+    color: black;
+    padding: 1rem;
+    font-family: var(--tipografia-secundaria);
+    text-decoration: none;
+  
+}
