@@ -1,0 +1,7 @@
+body{
+    background-image: url(../../../../imagenes/main-bg.svg);
+    background-repeat: no-repeat; /* Evita que la imagen se repita */
+    background-position: center; /* Centra la imagen en ambos ejes*/
+    background-size: cover; /* Asegura que la imagen cubra toda el área visible */
+    background-attachment: fixed;
+}

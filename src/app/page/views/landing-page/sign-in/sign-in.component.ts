@@ -15,7 +15,6 @@ export class SignInComponent {
 
   user: User = {
     password: '',
-    accessToken: '',
     topRanking: []
   }
 

@@ -184,10 +184,14 @@ main {
     border-radius: 0.2rem;
     border-style: solid;
     border-width: 0.1rem;
-
+    
     /* box-shadow: 1px 0px 5px var(--marron-oscuro); */
-
+    
     font-family: var(--tipografia-principal);
+}
+
+#playBtn:hover {
+    background-color: var(--marron-oscuro);
 }
 
 p {

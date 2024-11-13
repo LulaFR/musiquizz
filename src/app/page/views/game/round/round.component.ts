@@ -37,17 +37,31 @@ export class RoundComponent implements OnChanges{
   @Output()
   score: number = 0;
 
+  @Input()
+  lastRound: boolean = false;
+
+  disabledOpt: boolean = false;
+  disabledNext: boolean = true;
+
   chooseOption(id: string) {
+    this.score = 0;
     if (id === this.round.question.id) {
       alert('¡¡Respuesta correcta!!');
       this.score = 10;
     } else {
       alert('Opción incorrecta. Respuesta correcta: ' + this.round.question.name);
     }
+    this.disabledOpt = true;
+    this.disabledNext = false;
   }
 
+
   ngOnChanges(): void {
-    this.updateAudioSrc();
+    if (!this.lastRound) {
+      this.updateAudioSrc();
+      this.disabledOpt = false;
+      this.disabledNext = true
+    }
   }
 
   updateAudioSrc() {

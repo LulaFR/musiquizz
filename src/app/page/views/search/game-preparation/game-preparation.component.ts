@@ -1,11 +1,12 @@
 import { Component, input } from '@angular/core';
-import { Input } from '@angular/core';
+import { Input, Output } from '@angular/core';
 import { Track } from '../../../entities/track';
 import { Round } from '../../../entities/round';
 import { Game } from '../../../entities/game';
 import { OnInit } from '@angular/core';
 import { GameService } from '../../../services/game.service';
 import { Router } from '@angular/router';
+import { EventEmitter } from '@angular/core';
 
 @Component({
   selector: 'app-game-preparation',
@@ -42,6 +43,9 @@ export class GamePreparationComponent implements OnInit{
 
   provOptions: Track[] = [];
 
+  @Output()
+  eventEmitter = new EventEmitter<void>();
+
   ngOnInit(): void {
     // console.log('GAME OWOWOWOWOW: ' + this.tracks[4].id);
     this.unselectedTracks = [...this.tracks];
@@ -51,23 +55,29 @@ export class GamePreparationComponent implements OnInit{
   constructor(private gameService: GameService, private router: Router) {}
 
   generateGame() {
-    for (let index = 0; index < this.totalTracks; index++) {
-      this.round.options = []; //limpio el array de opciones;
-      // console.log('INDEX FOR: ' + index);
-      this.provisoryTracks = [...this.tracks] //cargo el array de tracks provisorio
-      this.selectQueryTrack(index); //se selecciona el track a adivinar
-      this.getOptions(); //se seleccionar las otras opciones
-      this.mixOptions();
-      this.game.rounds.push({...this.round}); //coloco la ronda en el juego
+    try {
+
+      for (let index = 0; index < this.totalTracks; index++) {
+        this.round.options = []; //limpio el array de opciones;
+        
+        this.provisoryTracks = [...this.tracks] //cargo el array de tracks provisorio
+        this.selectQueryTrack(index); //se selecciona el track a adivinar
+        this.getOptions(); //se seleccionar las otras opciones
+        this.mixOptions();
+        this.game.rounds.push({...this.round}); //coloco la ronda en el juego
+      }
+      this.saveGame();
+      this.mostrar();
+      this.startGame();
+    } catch(error: any) {
+      alert(error);
+      this.eventEmitter.emit();
     }
-    this.saveGame();
-    this.mostrar();
-    this.startGame();
   }
 
   selectQueryTrack(i: number) {
     const index = this.getRandomIndex(this.totalTracks - i);
-    // console.log('INDEX WOWOWOWOWO: ' + index);
+    console.log('INDEX WOWOWOWOWO: ' + index);
     // console.log('NOMBRE WOWOWOOW: ' + this.tracks[index].name);
     this.round.question = this.unselectedTracks[index]; //track a adivinar
     this.round.options.push({...this.unselectedTracks[index]}); //se coloca la respuesta correcta entre las opciones
@@ -90,10 +100,15 @@ export class GamePreparationComponent implements OnInit{
   }
 
   getOptions() {
-    for (let index = 0; index < 3; index++) {
-      const i = this.getRandomIndex(this.totalTracks - (index + 1)); //obtengo un index random
-      this.round.options.push({...this.provisoryTracks[i]}); //coloco el track en ese index entre las opciones
-      this.removeChosenOption(this.provisoryTracks[i].id); //elimino ese track del array provisorio
+    try{
+
+      for (let index = 0; index < 3; index++) {
+        const i = this.getRandomIndex(this.totalTracks - (index + 1)); //obtengo un index random
+        this.round.options.push({...this.provisoryTracks[i]}); //coloco el track en ese index entre las opciones
+        this.removeChosenOption(this.provisoryTracks[i].id); //elimino ese track del array provisorio
+      }
+    } catch(error: any) {
+      throw new Error('Hubo un problema al intentar cargar el álbum');
     }
   }
 

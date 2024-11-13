@@ -60,14 +60,14 @@
 
     <footer>
         <div class="footer-div">
-            <a class="footer-link" href="https://github.com/LulaFR">Luciana Fenoy Rivas</a> ●
-            <a class="footer-link" href="">Valentina Landaburu</a> ●
+            <a class="footer-link" href="https://www.linkedin.com/in/luciana-ariel-fenoy-rivas-8a24a42b8/">Luciana Fenoy Rivas</a> ●
+            <a class="footer-link" href="https://www.linkedin.com/in/valentina-landaburu-619485321/">Valentina Landaburu</a> ●
             <a class="footer-link" href="">Fausto Rodriguez</a> ●
-            <a class="footer-link" href="">Franco Vello</a>
+            <a class="footer-link" href="https://www.linkedin.com/in/francovello/">Franco Vello</a>
         </div>
     </footer>
 </body>
 
 @if (activatePlay) {
-    <app-game-preparation [tracks]="tracks" [totalTracks]="selectedAlbum.totalTracks"></app-game-preparation>
+    <app-game-preparation [tracks]="tracks" [totalTracks]="selectedAlbum.totalTracks" (eventEmitter)="deactivatePlay()"></app-game-preparation>
 }

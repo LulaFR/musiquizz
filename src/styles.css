@@ -6,7 +6,9 @@
 
 :root{
     --verde-claro: #1ED65E; /*color de spotify*/
+    --verde-claro-transparente: #1ED65EAA;
     --verde-oscuro: #3D8155;
+    --verde-oscuro-transparente: #3D8155AA;
     --violeta-claro: #7E1ED6;
     --violeta-claro-transparente: #7E1ED6AA;
     --violeta-oscuro: #483757;

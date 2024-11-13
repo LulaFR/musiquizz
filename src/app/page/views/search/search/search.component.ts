@@ -7,6 +7,9 @@ import { Album } from '../../../entities/album';
 import { Track } from '../../../entities/track';
 import { GamePreparationComponent } from '../game-preparation/game-preparation.component';
 import { Router } from '@angular/router';
+import { GameService } from '../../../services/game.service';
+import { AuthService } from '../../../services/auth.service';
+import { ActiveService } from '../../../services/active.service';
 
 @Component({
   selector: 'app-search',
@@ -18,9 +21,16 @@ import { Router } from '@angular/router';
 export class SearchComponent implements OnInit{
 
   ngOnInit(): void {
-    this.searchType = this.lsService.getGameMode();
+    this.activeService.getActive().subscribe(
+      {
+        next: (response) => {
+          this.searchType = response.gameMode;
+        }
+      }
+    )
+    this.getToken();
   }
-  constructor(private spotifyService: SpotifyService, private lsService: LocalStorageService, private router: Router) {}
+  constructor(private spotifyService: SpotifyService, private lsService: LocalStorageService, private router: Router, private gameService: GameService, private authService: AuthService, private activeService: ActiveService) {}
 
   
   //ATRIBUTOS--------------------------------------------------------------------------------------------------------
@@ -57,6 +67,7 @@ export class SearchComponent implements OnInit{
   selectedArtistId: string = ''; //id del artista elegido
   activatePlay: boolean = false;
   available: boolean = true;
+  token: string = '';
 
 
   
@@ -68,28 +79,19 @@ export class SearchComponent implements OnInit{
         next: (response) => {
           console.log(response);
         },
-        error: (error: Error) => ('Hubo un error: ' + error)
+        error: (error: Error) => {
+          alert('Hubo un error al buscar los artistas: ' + error);
+        }
       }
     );
   }
   
-  // searchPlaylist() {
-  //   this.spotifyService.searchPlaylist("BQB9R-t7afNAZ5MtFdJqkZzdSQ3rwP8u2N0BHpDOvfm9lKSdqO5Y5H4bmLZZpFXgyzOr9Wfu1vvxyqbKHqnPHfp6guKevCLVk4goBZ7Es5qnUtQQ3Qk", "shower songs").subscribe(
-    //     {
-      //       next: (response) => {
-        //         console.log(response);
-        //       },
-        //       error: (error: Error) => ('Hubo un error: ' + error)
-        //     }
-        //   );
-        // }
-        
   searchAlbum(album: string) {
     this.albums = []; //limpio el array de álbums
-
     console.log('Entro a get album');
     console.log(this.lsService.getToken());
-    this.spotifyService.searchAlbum(this.lsService.getToken(), album).subscribe(
+    // this.spotifyService.searchAlbum(this.lsService.getToken(), album).subscribe(
+    this.spotifyService.searchAlbum(this.token, album).subscribe(
       {
         next: (response) => {
           console.log(response);
@@ -111,17 +113,23 @@ export class SearchComponent implements OnInit{
             this.activeSearch = true;
           })
         },
-        error: (error: Error) => ('Hubo un error: ' + error)
+        error: (error: Error) => {
+          alert('Hubo un error al buscar los álbums: ' + error);
+        }
       }
     );
   }
   
   getAlbumTracks() {
     this.albums = []; //limpio el array de álbums
-    this.spotifyService.getAlbumTracks(this.lsService.getToken(), this.selectedAlbum.id).subscribe(
+    this.spotifyService.getAlbumTracks(this.token, this.selectedAlbum.id).subscribe(
       {
         next: (response) => {
           //corroboro que todas las pistas tengan audio
+          if (response.items.length < 4) {
+            alert('El álbum no tiene la cantidad de tracks suficiente.');
+            return;
+          }
           const allTracksHavePreview = response.items.every((item: any) => item.preview_url);
 
           if (!allTracksHavePreview) {
@@ -129,22 +137,21 @@ export class SearchComponent implements OnInit{
             return;
           }
 
-          // console.log(response);
           //todos los tracks tienen pistas de audio
           response.items.map((item: any) => {
-
               this.track.id = item.id;
               this.track.img = this.selectedAlbum.imgUrl;
               this.track.name = item.name;
               this.track.preview = item.preview_url;
 
               this.tracks.push({...this.track});
-              // console.log('CANCIOOOOOON: ' + this.tracks[0].name);
-
             })
+
             this.activatePlay = true;
           },
-          error: (error: Error) => ('Hubo un error: ' + error)
+          error: (error: Error) => {
+            alert('Hubo un error al intentar obtener los tracks: ' + error);
+          }
         }
       );
     }
@@ -152,12 +159,11 @@ export class SearchComponent implements OnInit{
   //MÉTODOS DE SELECCIÓN---------------------------------------------------------------------------------------------
   
   selectAlbumId(id: string) {
-    console.log('GUARDO ID');
     this.selectedAlbum = this.searchStoredAlbum(id);
     this.disablePlayButton = false;
   }
   
-  //MÉTODOS DE SELECCIÓN---------------------------------------------------------------------------------------------
+  //MÉTODOS DE ACCIÓN---------------------------------------------------------------------------------------------
 
   play() {
     this.getAlbumTracks();
@@ -171,5 +177,30 @@ export class SearchComponent implements OnInit{
 
   searchStoredAlbum(id: string): Album {
     return this.albums.filter((album) => (album.id == id))[0];
+  }
+
+  getToken() {
+    // let token: string;
+    // this.authService.getToken().subscribe(
+    //   {
+    //     next: (response) => {
+    //       token = response;
+    //     },
+    //     error: (error: Error) => {
+    //       alert(error);
+    //     }
+    //   });
+    // return token;
+    this.activeService.getActive().subscribe(
+      {
+        next: (r) => {
+          this.token = r.token;
+        }
+      }
+    )
+  }
+
+  deactivatePlay() {
+    this.activatePlay = false;
   }
 }

@@ -1,5 +1,4 @@
 import { Component, EventEmitter, inject } from '@angular/core';
-// import { RouterOutlet, RouterLink } from '@angular/router';
 import { FormBuilder, ReactiveFormsModule, FormGroup, Validators } from '@angular/forms';
 import { User } from '../../../entities/user';
 import { UserService } from '../../../services/user.service';
@@ -17,7 +16,6 @@ export class LogInComponent {
   user: User = {
     id: '',
     password: '',
-    accessToken: '',
     topRanking: []
   }
   
@@ -30,20 +28,17 @@ export class LogInComponent {
 
   form = this.fb.nonNullable.group(
     {
-      id: ['', [Validators.required, Validators.maxLength(20)]],
-      password: ['', [Validators.required, Validators.minLength(5), Validators.maxLength(20)]]
+      id: ['', [Validators.required]],
+      password: ['', [Validators.required]]
     }
   );
 
 
   logIn() {
     if(this.form.invalid) {
-      alert('Chequeá que los campos estén llenos y estén entre los 5 y 20 caracteres'); 
-      //comprobar qué está mal
+      alert('Completar campos'); 
       return;
     }
-
-    // alert('paso');
 
     //es válido
     //buscar en el json de usuarios un usuario con el id ingresado
@@ -51,29 +46,25 @@ export class LogInComponent {
   }
 
   getUser() {
-    // alert('obtener usuario');
     this.userService.getUser(this.form.getRawValue().id).subscribe(
       {
         next: (user) => {
           if(user) {
             this.user = user;
-            console.log(user);
             this.checkPassword();
           }
         },
         error: (error: Error) => {
-          console.log('Error al intentar obtener el usuario: ' + error);
+          alert(error);
         }
       });
     }
 
 
   checkPassword() {
-    // alert('check password')
     if (this.user.password == this.form.getRawValue().password) {
-      // alert('Ingresando...');
+      // this.userService.setActiveUser(this.user);
       this.emitUser();
-      this.userService.setActiveUser(this.user);
     } else {
       alert('El usuario o la contraseña son incorrectos');
     }

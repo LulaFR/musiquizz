@@ -7,28 +7,35 @@
                 <path d="M5.94 12.4492H5.81C3.71 12.4492 2 14.1592 2 16.2592V18.1392C2 20.2392 3.71 21.9492 5.81 21.9492H5.94C8.04 21.9492 9.75 20.2392 9.75 18.1392V16.2592C9.75 14.1592 8.04 12.4492 5.94 12.4492Z" fill="#292D32"/>
                 <path d="M18.19 12.4492H18.06C15.96 12.4492 14.25 14.1592 14.25 16.2592V18.1392C14.25 20.2392 15.96 21.9492 18.06 21.9492H18.19C20.29 21.9492 22 20.2392 22 18.1392V16.2592C22 14.1592 20.29 12.4492 18.19 12.4492Z" fill="#292D32"/>
             </svg>
-            <!-- <img src="../../../../../imagenes/user.svg" alt=""> -->
         </button>
     </header>
 
     <main>
-        <h1>¡Tus resultados, {{user.id}}!</h1>
+        <h1>¡Tus resultados, <span>{{user.id}}</span>!</h1>
 
         <div id="container">
 
-            
-            <section id="scoreSection">
-                <p>Puntos: {{score}}</p>
-            </section>
+            <div id="leftDiv">
+                <section id="scoreSection">
+                    <!-- <p>Puntos: <br>1000</p> -->
+                    <p>Puntos: {{score}}</p>
+                </section>
+
+                <section id="continue">
+                    <button id="backToMenu" class="button" (click)="backToMenu()">Ir al menú</button>
+                    <button id="playAgain" class="button" (click)="playAgain()">Volver a modo álbum</button>
+                </section>
+            </div>
             
             <section id="rankingSection">
                 
-                @if (user.topRanking != []) {
+                <!-- @if (user.topRanking !== undefined) { -->
+                @if (user.topRanking !== undefined && user.topRanking.length > 0) {
                     <h3>Tu ranking actual</h3>
 
                     <section id="rankingBoard">
                         @for (item of user.topRanking; track $index) {
-                            <p>[$index]. {{item}} pts.</p>
+                            <p>{{$index + 1}}. {{item.score}} pts. ||  {{item.gameMode}} mode</p>
                         }
                     </section>
                     

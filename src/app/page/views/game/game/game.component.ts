@@ -1,10 +1,10 @@
 import { Component } from '@angular/core';
 import { Game } from '../../../entities/game';
-import { Round } from '../../../entities/round';
 import { GameService } from '../../../services/game.service';
 import { OnInit } from '@angular/core';
-import { RouterOutlet, Router } from '@angular/router';
+import { Router } from '@angular/router';
 import { RoundComponent } from '../round/round.component';
+import { ActiveService } from '../../../services/active.service';
 
 @Component({
   selector: 'app-game',
@@ -14,7 +14,7 @@ import { RoundComponent } from '../round/round.component';
   styleUrl: './game.component.css'
 })
 export class GameComponent implements OnInit{
-  constructor(private gameService: GameService, private router: Router) {}
+  constructor(private gameService: GameService, private router: Router, private activeService: ActiveService) {}
   
   game: Game = {
     rounds: []
@@ -25,6 +25,8 @@ export class GameComponent implements OnInit{
   currentRound: number = 0;
 
   btnMsg: string = 'Siguiente';
+
+  lastRound: boolean = false;
 
   ngOnInit(): void {
     this.gameService.getGame().subscribe(
@@ -44,8 +46,15 @@ export class GameComponent implements OnInit{
     if(this.currentRound < this.game.rounds.length - 1) {
       this.currentRound++;
     } else {
-      this.gameService.setScore(this.score); //guardo el score final
+      this.activeService.patchActive({newScore: this.score}).subscribe(
+        {
+          error: (error: Error) => {
+            alert('Save Score Error: ' + error);
+          }
+        }
+      );
       this.btnMsg = 'Ver resultados'
+      this.lastRound = true;
       alert('Fin del juego ' + this.score);
     }
   }

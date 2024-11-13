@@ -2,6 +2,8 @@ import { Component } from '@angular/core';
 import { SpotifyService } from '../../../services/spotify.service';
 import { Router } from '@angular/router';
 import { LocalStorageService } from '../../../services/local-storage.service';
+import { GameService } from '../../../services/game.service';
+import { ActiveService } from '../../../services/active.service';
 
 @Component({
   selector: 'app-menu',
@@ -12,7 +14,7 @@ import { LocalStorageService } from '../../../services/local-storage.service';
 })
 export class MenuComponent {
 
-  constructor(private router: Router, private lsService: LocalStorageService) {}
+  constructor(private router: Router, private lsService: LocalStorageService, private gameService: GameService, private activeService: ActiveService) {}
 
   //variables-------------------------------------------------------------------------------------------------------
   
@@ -57,9 +59,21 @@ export class MenuComponent {
 
   setGameMode() {
     if(this.enableAlbumMode) {
-      this.lsService.setGameMode('album');
+      this.activeService.patchActive({gameMode: 'album'}).subscribe(
+        {
+          error: (error: Error) => {
+            alert('Menu Error: ' + error);
+          }
+        }
+      );
     } else if(this.enableArtistMode) {
-      this.lsService.setGameMode('artist');
+      this.activeService.patchActive({gameMode: 'artist'}).subscribe(
+        {
+          error: (error: Error) => {
+            alert('Menu Error: ' + error);
+          }
+        }
+      );
     }
   }
 

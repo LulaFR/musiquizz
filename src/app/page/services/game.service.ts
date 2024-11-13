@@ -6,8 +6,17 @@ import { Game } from '../entities/game';
   providedIn: 'root'
 })
 export class GameService {
+  private gameMode = new BehaviorSubject<string>('');
   private game = new BehaviorSubject<Game>({ rounds: []});
   private score = new BehaviorSubject<number>(0);
+
+  getGameMode() {
+    return this.gameMode.asObservable();
+  }
+
+  setGameMode(gameMode: string) {
+    this.gameMode.next(gameMode);
+  }
 
   getGame() {
     return this.game.asObservable();

@@ -10,14 +10,14 @@
         <p class="option">Opción</p>
         <p class="option">Opción</p>
         <p class="option">Opción</p> -->
-        <p class="option" (click)="chooseOption(round.options[0].id)">{{round.options[0].name}}</p>
-        <p class="option" (click)="chooseOption(round.options[1].id)">{{round.options[1].name}}</p>
-        <p class="option" (click)="chooseOption(round.options[2].id)">{{round.options[2].name}}</p>
-        <p class="option" (click)="chooseOption(round.options[3].id)">{{round.options[3].name}}</p>
+        <button class="option" [disabled]="disabledOpt" (click)="chooseOption(round.options[0].id)">{{round.options[0].name}}</button>
+        <button class="option" [disabled]="disabledOpt" (click)="chooseOption(round.options[1].id)">{{round.options[1].name}}</button>
+        <button class="option" [disabled]="disabledOpt" (click)="chooseOption(round.options[2].id)">{{round.options[2].name}}</button>
+        <button class="option" [disabled]="disabledOpt" (click)="chooseOption(round.options[3].id)">{{round.options[3].name}}</button>
     </section>
 </div>
 @if (btnMsg == 'Siguiente') {
-    <button id="next" (click)="next()">{{btnMsg}}>></button>
+    <button id="next" [disabled]="disabledNext" (click)="next()">{{btnMsg}}>></button>
 } @else {
-    <button id="next" (click)="seeResults()">{{btnMsg}}>></button> //cambiar método a redirect
+    <button id="next" [disabled]="disabledNext" (click)="seeResults()">{{btnMsg}}>></button> //cambiar método a redirect
 }

@@ -6,6 +6,8 @@ import { LogInComponent } from './log-in/log-in.component';
 import { SignInComponent } from './sign-in/sign-in.component';
 import { Router, provideRouter, RouterOutlet } from '@angular/router';
 import { OnInit } from '@angular/core';
+import { ActiveService } from '../../services/active.service';
+import { ThisReceiver, Token } from '@angular/compiler';
 
 @Component({
   selector: 'app-landing-page',
@@ -17,49 +19,58 @@ import { OnInit } from '@angular/core';
 export class LandingPageComponent implements OnInit{
 
   ngOnInit(): void {
-    this.authService.clearLocalStorage();
+    // this.authService.clearLocalStorage();
+    this.activeService.restoreActive().subscribe(
+      {
+        error: (error: Error) => {
+          alert('Langing Page Error: ' + error);
+        }
+      }
+    )
   }
 
+  constructor(private authService: AuthService, private userService: UserService, private router: Router, private activeService: ActiveService) {}
+
+  //ATRIBUTES-------------------------------------------------------------------------------------------------------
+  
   private user: User = {
     id: '',
     password: '',
-    accessToken: '',
     topRanking: []
   }
-
+  
   disableLogIn: boolean = false;
   disableSignIn: boolean = true;
-
-  constructor(private authService: AuthService, private userService: UserService, private router: Router) {}
+  
+  //METHODS-------------------------------------------------------------------------------------------------------
 
   //Recibo el user desde log in
   logIn(user: User) {
     if (user) {
       this.user = user;
       //pido el access token
-    this.authService.getAccessToken().subscribe(
-      {
-        next: (response) => {
-          console.log(response);
-          // this.user.accessToken = response; //asigno el access token al objeto de at
-          this.authService.setActiveUser(user.id);
-          console.log('Usuario activo: ' + this.authService.getActiveUser());
-          console.log('RESPONSE:' + response.access_token);
-          this.authService.setToken(response.access_token);
-          this.router.navigate(['/menu']);
-        },
-        error: (error: Error) => {
-          alert('Hubo un error al intentar ingresar');
-          console.log('Error: ' +error);
-          return;
+      this.authService.getAccessToken().subscribe(
+        {
+          next: (response) => {
+            // this.authService.setActiveUser(user);
+            // this.authService.setToken(response.access_token);
+            this.activeService.patchActive({userId: this.user.id, token: response.access_token}).subscribe(
+              {
+                error: (error: Error) => {
+                  alert('Landing Page Error: ' + error);
+                }
+              }
+            )
+            this.router.navigate(['/menu']);
+          },
+          error: (error: Error) => {
+            alert('Hubo un error al intentar ingresar');
+            console.log('Get Access Token Error: ' +error);
+            return;
+          }
         }
-      }
-    )
-  }
-    //Se asigna un usuario activo y su access token
-    //Se va a tener q pasar el usuario a través de la ruta con query Params(creo)
-    // this.userService.setActiveUser(user);
-    // this.userService.setAccessToken(this.accessToken.accessToken);
+      )
+    }
   }
 
   activateLogIn() {

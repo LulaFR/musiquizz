@@ -1,6 +1,6 @@
 import { HttpClient, HttpHeaders, HttpParams} from '@angular/common/http';
 import { inject, Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
+import { Observable, BehaviorSubject, map } from 'rxjs';
 import { environment } from '../../../environments/environment.development';
 import { Location } from '@angular/common';
 import { User } from '../entities/user';
@@ -21,6 +21,16 @@ export class AuthService {
   private clientSecret: string = environment.client_secret;
   private tokenUrl = 'https://accounts.spotify.com/api/token';
 
+  private activeUser = new BehaviorSubject<User>(
+    {
+      id: '',
+      password: '',
+      topRanking: []
+    }
+  );
+
+  private token = new BehaviorSubject<string>('');
+
   getAccessToken(): Observable<any> {
     const headers = new HttpHeaders({
       'Content-Type': 'application/x-www-form-urlencoded',
@@ -33,25 +43,33 @@ export class AuthService {
     return this.http.post(this.tokenUrl, body.toString(), { headers });
   }
 
-  //PASADO A LOCAL STORAGE SERVICE
-  //CAMBIAR EN COMPONENTES QUE USAN ESTOS MÉTODOS DESDE ACÁ
+  //USAR ESTOS
   setToken(token: string) {
-    localStorage.setItem('token', token);
+    this.token.next(token);
   }
 
-  isLoggedIn() {
-    return !!localStorage.getItem('token');
+  getToken(): Observable<string> {
+    return this.token.asObservable();
+  }
+  
+  isLoggedIn() { //probar
+    let t = '';
+    this.token.asObservable().pipe(
+      map((token) => (t = token))
+    );
+    return (t == ''? false : true);
+    // return !!localStorage.getItem('token');
   }
 
-  clearLocalStorage() {
-    localStorage.clear();
-  }
+  // clearLocalStorage() {
+  //   localStorage.clear();
+  // }
 
-  setActiveUser(id: string = '') {
-    localStorage.setItem('activeUser', id);
-  }
+  // setActiveUser(user: User) {
+  //   this.activeUser.next(user);
+  // }
 
-  getActiveUser() {
-    return localStorage.getItem('activeUser');
-  }
+  // getActiveUser(): Observable<User> {
+  //   return this.activeUser.asObservable();
+  // }
 }

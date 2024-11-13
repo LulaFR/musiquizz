@@ -3,38 +3,72 @@
     {
       "id": "dac5",
       "password": "99887",
-      "accessToken": "",
       "topRanking": []
     },
     {
       "id": "Lula12",
       "password": "121212",
-      "accessToken": "",
-      "topRanking": []
+      "topRanking": [
+        {
+          "score": 60,
+          "gameMode": "album",
+          "userId": "Lula12"
+        },
+        {
+          "score": 50,
+          "gameMode": "album",
+          "userId": "Lula12"
+        }
+      ]
     },
     {
       "id": "Gostita",
       "password": "070707",
-      "accessToken": "",
       "topRanking": []
     },
     {
       "id": "chechu31",
       "password": "313131",
-      "accessToken": "",
       "topRanking": []
     },
     {
       "id": "gusti05",
       "password": "050505",
-      "accessToken": "",
       "topRanking": []
     },
     {
       "id": "delfe",
       "password": "dtf123",
-      "accessToken": "",
       "topRanking": []
+    },
+    {
+      "id": "franco",
+      "password": "utn2024",
+      "topRanking": []
+    },
+    {
+      "id": "vaily",
+      "password": "12345",
+      "topRanking": []
+    },
+    {
+      "id": "vaily123",
+      "password": "12345",
+      "topRanking": []
+    },
+    {
+      "id": "Nica123",
+      "password": "123456",
+      "topRanking": []
+    }
+  ],
+  "active": [
+    {
+      "userId": "Lula12",
+      "token": "BQCHItA6txeKjA1IlSqgraidipUD9DhQsfEpUzZT7TZO3nraxDeGNLZ3VACj1bC8Ck4cOpTkUfMTW7zSiCqCb8N5EZj_sdHKuRngmXXeVKJE7q0nz_Q",
+      "gameMode": "album",
+      "id": "active",
+      "newScore": 50
     }
   ]
 }
