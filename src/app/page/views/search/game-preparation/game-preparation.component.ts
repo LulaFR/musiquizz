@@ -16,11 +16,9 @@ import { EventEmitter } from '@angular/core';
   styleUrl: './game-preparation.component.css'
 })
 export class GamePreparationComponent implements OnInit{
-  //HACER MÉTODO PARA MEZCLAR LAS OPCIONES EN UNA RONDA
   @Input()
   tracks: Track[] = [];
 
-  // provisoryTracks: Track[] = this.tracks;
   provisoryTracks: Track[] = [];
   unselectedTracks: Track[] = [];
 
@@ -47,7 +45,6 @@ export class GamePreparationComponent implements OnInit{
   eventEmitter = new EventEmitter<void>();
 
   ngOnInit(): void {
-    // console.log('GAME OWOWOWOWOW: ' + this.tracks[4].id);
     this.unselectedTracks = [...this.tracks];
     this.generateGame();
   }
@@ -57,7 +54,6 @@ export class GamePreparationComponent implements OnInit{
   generateGame() {
     try {
       console.log('ACÁ LULA');
-      // for (let index = 0; index < this.totalTracks; index++) {
       for (let index = 0; index < (this.totalTracks <= 12 ? this.totalTracks : 12); index++) { //12 rondas como máximo
         this.round.options = []; //limpio el array de opciones;
         
@@ -80,8 +76,6 @@ export class GamePreparationComponent implements OnInit{
 
   selectQueryTrack(i: number) {
     const index = this.getRandomIndex(this.totalTracks - i);
-    console.log('INDEX WOWOWOWOWO: ' + index);
-    // console.log('NOMBRE WOWOWOOW: ' + this.tracks[index].name);
     this.round.question = this.unselectedTracks[index]; //track a adivinar
     this.round.options.push({...this.unselectedTracks[index]}); //se coloca la respuesta correcta entre las opciones
     this.removeChosenTrack(this.unselectedTracks[index].id); //se elimina el track del array provisorio para no volver

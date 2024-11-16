@@ -131,14 +131,19 @@
           "userId": "lucre"
         }
       ]
+    },
+    {
+      "id": "Adrian",
+      "password": "aroca",
+      "topRanking": []
     }
   ],
   "active": [
     {
-      "userId": "lucre",
-      "token": "BQBIO6tau3aGU2ZzbSGyC-T4whNIXv8g3n-9Fu5wgbioXcy2jS581SEptTdxJHwo2vkCAVbVvKeo5OicNWlkcUlzFtfkmsvibC1VJ8bpfGc7iUNFqtY",
+      "userId": "Lula12",
+      "token": "BQA6f3TWvXRJhD1wy5o3dirr9s3PmJ6igpx7hlqKxeVzMWjsoy8-kpXcbpSKcSCSW5T0k0iTZoZbkqMpTH0PB0vUp2PZZKQeQb5LTNMCmlXaSIy0SF4",
       "gameMode": "album",
-      "newScore": 110,
+      "newScore": 30,
       "id": "active"
     }
   ]

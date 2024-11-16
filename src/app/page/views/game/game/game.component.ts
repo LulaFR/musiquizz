@@ -5,11 +5,12 @@ import { OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { RoundComponent } from '../round/round.component';
 import { ActiveService } from '../../../services/active.service';
+import { FooterComponent } from '../../shared/footer/footer.component';
 
 @Component({
   selector: 'app-game',
   standalone: true,
-  imports: [RoundComponent],
+  imports: [RoundComponent, FooterComponent],
   templateUrl: './game.component.html',
   styleUrl: './game.component.css'
 })

@@ -14,7 +14,7 @@ import { Router } from '@angular/router';
   styleUrl: './user.component.css'
 })
 export class UserComponent implements OnInit{
-  constructor(private lsService: LocalStorageService, private userService: UserService, private activeService: ActiveService, private router: Router) {}
+  constructor(private userService: UserService, private activeService: ActiveService, private router: Router) {}
 
   user: User = {
     id: '',

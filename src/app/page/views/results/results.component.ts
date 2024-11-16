@@ -1,23 +1,22 @@
 import { Component } from '@angular/core';
 import { User } from '../../entities/user';
-import { GameService } from '../../services/game.service';
 import { OnInit } from '@angular/core';
-import { LocalStorageService } from '../../services/local-storage.service';
 import { UserService } from '../../services/user.service';
 import { Router } from '@angular/router';
 import { Ranking } from '../../entities/ranking';
 import { ActiveService } from '../../services/active.service';
+import { FooterComponent } from '../shared/footer/footer.component';
 
 @Component({
   selector: 'app-results',
   standalone: true,
-  imports: [],
+  imports: [FooterComponent],
   templateUrl: './results.component.html',
   styleUrl: './results.component.css'
 })
 export class ResultsComponent implements OnInit{
 
-  constructor(private gameService: GameService, private lsService: LocalStorageService, private userService: UserService, private router: Router, private activeService: ActiveService) {}
+  constructor(private userService: UserService, private router: Router, private activeService: ActiveService) {}
 
   score: number = 0;
   gameMode: string = '';
@@ -34,25 +33,20 @@ export class ResultsComponent implements OnInit{
           this.getActiveUser(response.userId);
           this.score = response.newScore;
           this.gameMode = response.gameMode;
-          console.log('INIT');
-          // this.save();
         }
       }
     )
   }
 
   backToMenu() {
-    // this.save();
     this.router.navigate(['/menu']);
   }
   
   playAgain() {
-    // this.save();
     this.router.navigate(['/search']);
   }
 
   save() {
-    console.log('SAVE');
     this.setOldRankings();
     this.arrangeRanking();
     if (this.user.id) {
@@ -108,12 +102,10 @@ export class ResultsComponent implements OnInit{
   }
 
   setOldRankings() {
-    console.log('Entro set old');
     if (this.user.topRanking) {
       console.log(this.user.topRanking.length);
       for (let index = 0; index < this.user.topRanking.length; index++) {
         this.user.topRanking[index].new = false;
-        console.log('Entro set old if for');
         console.log(this.user.topRanking[index].score);
         console.log(this.user.topRanking[index].new);
       }

@@ -4,14 +4,12 @@ body{
     background-position: center; /* Centra la imagen en ambos ejes*/
     background-size: cover; /* Asegura que la imagen cubra toda el área visible */
     background-attachment: fixed
-
-    /* min-height: 100vh; */
 }
 
 .header{
     display: flex;
     justify-content:space-between; /*posiciona el contenido a la derecha*/
-    /* margin-bottom: 0; */
+
     padding: 1% 2%;
     top: 0;
 }
@@ -27,7 +25,6 @@ body{
     color: black;
     background-color: var(--violeta-claro-transparente);
 
-    /* margin-top: 1rem; */
     margin-top: 0.1rem;
     margin-right: 1rem;
     margin-bottom: 0.3rem;
@@ -42,7 +39,6 @@ body{
 
 #goBackBtn:hover{
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-    /* box-shadow: 1px 0px 5px var(--violeta-claro); */
     background-color: var(--violeta-oscuro-transparente);
 }
 
@@ -61,27 +57,3 @@ body{
 main {
     min-height: 100vh;
 }
-
-/* #gameZone {
-    width: 85%;
-    height: 23rem;
-    display: flex;
-    flex-direction: row;
-
-    margin: 0 auto;
-    margin-top: 5rem;
-    border-color: var(--violeta-claro);
-    border-radius: 0.2rem;
-    border-width: 0.2rem;
-    padding: 0;
-
-    justify-self: center;
-    align-self: center;
-
-    justify-content: space-around;
-    align-items: center;
-
-    background-color: var(--violeta-claro-transparente);
-
-    box-sizing: border-box;
-} */

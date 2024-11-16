@@ -2,20 +2,19 @@ import { Component } from '@angular/core';
 import { SpotifyService } from '../../../services/spotify.service';
 import { SearchFormComponent } from "../search-form/search-form/search-form.component";
 import { OnInit } from '@angular/core';
-import { LocalStorageService } from '../../../services/local-storage.service';
 import { Album } from '../../../entities/album';
 import { Track } from '../../../entities/track';
 import { Artist } from '../../../entities/artist';
 import { GamePreparationComponent } from '../game-preparation/game-preparation.component';
 import { Router } from '@angular/router';
-import { GameService } from '../../../services/game.service';
 import { AuthService } from '../../../services/auth.service';
 import { ActiveService } from '../../../services/active.service';
+import { FooterComponent } from '../../shared/footer/footer.component';
 
 @Component({
   selector: 'app-search',
   standalone: true,
-  imports: [SearchFormComponent, GamePreparationComponent],
+  imports: [SearchFormComponent, GamePreparationComponent, FooterComponent],
   templateUrl: './search.component.html',
   styleUrl: './search.component.css'
 })
@@ -31,7 +30,7 @@ export class SearchComponent implements OnInit{
     )
     this.getToken();
   }
-  constructor(private spotifyService: SpotifyService, private lsService: LocalStorageService, private router: Router, private gameService: GameService, private authService: AuthService, private activeService: ActiveService) {}
+  constructor(private spotifyService: SpotifyService, private router: Router, private authService: AuthService, private activeService: ActiveService) {}
 
   
   //ATRIBUTOS--------------------------------------------------------------------------------------------------------
@@ -185,11 +184,6 @@ export class SearchComponent implements OnInit{
     }
     
   //MÉTODOS DE SELECCIÓN---------------------------------------------------------------------------------------------
-  
-  // selectAlbumId(id: string) {
-  //   this.selectedAlbum = this.searchStoredAlbum(id);
-  //   this.disablePlayButton = false;
-  // }
 
   selectChoiceId(id: string) {
     if(this.searchType == 'album') {
@@ -212,9 +206,6 @@ export class SearchComponent implements OnInit{
 
   //MÉTODOS DE MODULARIZACIÓN----------------------------------------------------------------------------------------
   
-  // searchStoredAlbum(id: string): Album {
-  //   return this.albums.filter((album) => (album.id == id))[0];
-  // }
   searchStoredChoice(id: string): any {
     if (this.searchType == 'album') {
       return this.albums.filter((album) => (album.id == id))[0];

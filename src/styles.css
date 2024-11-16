@@ -38,29 +38,3 @@ body {
 main {
     margin: 0;
 }
-
-/*FOOTER------------------------------------------------------------------------------------------------------------------------*/
-
-footer{
-    background-color: var(--violeta-claro);
-    align-items: center;
-    margin: 0;
-    padding: 0.5rem;
-    position: fixed;
-    bottom: 0;
-    width: 100%;
-}
-
-.footer-div{
-    align-items: center;
-    padding: 0.3rem;
-    text-align: center;
-}
-
-.footer-link{
-    color: black;
-    padding: 1rem;
-    font-family: var(--tipografia-secundaria);
-    text-decoration: none;
-  
-}

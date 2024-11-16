@@ -1,5 +1,5 @@
 import { Component, EventEmitter, inject } from '@angular/core';
-import { FormBuilder, ReactiveFormsModule, FormGroup, Validators } from '@angular/forms';
+import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
 import { User } from '../../../entities/user';
 import { UserService } from '../../../services/user.service';
 import { Output } from '@angular/core';

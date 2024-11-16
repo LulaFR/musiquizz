@@ -1,20 +1,18 @@
 import { Component } from '@angular/core';
-import { SpotifyService } from '../../../services/spotify.service';
 import { Router } from '@angular/router';
-import { LocalStorageService } from '../../../services/local-storage.service';
-import { GameService } from '../../../services/game.service';
 import { ActiveService } from '../../../services/active.service';
+import { FooterComponent } from '../../shared/footer/footer.component';
 
 @Component({
   selector: 'app-menu',
   standalone: true,
-  imports: [],
+  imports: [FooterComponent],
   templateUrl: './menu.component.html',
   styleUrl: './menu.component.css'
 })
 export class MenuComponent {
 
-  constructor(private router: Router, private lsService: LocalStorageService, private gameService: GameService, private activeService: ActiveService) {}
+  constructor(private router: Router, private activeService: ActiveService) {}
 
   //variables-------------------------------------------------------------------------------------------------------
   

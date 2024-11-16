@@ -50,7 +50,6 @@ img {
     display: block;
 
     margin: 1rem 0 1rem 0;
-    /* margin-bottom: 0.5rem; */
 }
 
 audio {
@@ -138,7 +137,6 @@ audio::-webkit-media-controls-panel {
     color: black;
     background-color: var(--violeta-claro-transparente);
 
-    /* margin-top: 1rem; */
     margin-top: 0.1rem;
     margin-right: 1rem;
     margin-bottom: 0.3rem;
@@ -152,6 +150,5 @@ audio::-webkit-media-controls-panel {
 
 #next:hover{
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-    /* box-shadow: 1px 0px 5px var(--violeta-claro); */
     background-color: var(--violeta-oscuro-transparente);
 }

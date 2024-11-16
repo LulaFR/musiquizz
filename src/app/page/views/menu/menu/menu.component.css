@@ -59,10 +59,6 @@ h2{
 }
 
 .mode{
-    /*padding: 1rem;*/
-    /*border: 1px solid;
-    border-color: var(--verde-oscuro);
-    border-radius: 0.5rem;*/
     border: none;
 
     display: flex;

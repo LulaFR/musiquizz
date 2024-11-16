@@ -67,20 +67,17 @@
                         <p class="albumItem">{{selectedArtist.name}}</p>
                     }
                 </section>
-                <button [disabled]="disablePlayButton" id="playBtn" (click)="play()">Jugar</button>
+                @if (searchType == 'artist') {
+                    <button [disabled]="true" id="playBtn" (click)="play()">Pronto</button> <!--se saca cuando se habilite el modo artista-->
+                } @else {
+                    <button [disabled]="disablePlayButton" id="playBtn" (click)="play()">Jugar</button>
+                }
             </div>
         </section>
         
     </main>
 
-    <footer>
-        <div class="footer-div">
-            <a class="footer-link" href="https://www.linkedin.com/in/luciana-ariel-fenoy-rivas-8a24a42b8/">Luciana Fenoy Rivas</a> ●
-            <a class="footer-link" href="https://www.linkedin.com/in/valentina-landaburu-619485321/">Valentina Landaburu</a> ●
-            <a class="footer-link" href="">Fausto Rodriguez</a> ●
-            <a class="footer-link" href="https://www.linkedin.com/in/francovello/">Franco Vello</a>
-        </div>
-    </footer>
+    <app-footer></app-footer>
 </body>
 
 @if (activatePlay) {

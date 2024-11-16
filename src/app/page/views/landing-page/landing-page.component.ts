@@ -4,15 +4,15 @@ import { User } from '../../entities/user';
 import { UserService } from '../../services/user.service';
 import { LogInComponent } from './log-in/log-in.component';
 import { SignInComponent } from './sign-in/sign-in.component';
-import { Router, provideRouter, RouterOutlet } from '@angular/router';
+import { Router } from '@angular/router';
 import { OnInit } from '@angular/core';
 import { ActiveService } from '../../services/active.service';
-import { ThisReceiver, Token } from '@angular/compiler';
+import { FooterComponent } from '../shared/footer/footer.component';
 
 @Component({
   selector: 'app-landing-page',
   standalone: true,
-  imports: [LogInComponent, SignInComponent],
+  imports: [LogInComponent, SignInComponent, FooterComponent],
   templateUrl: './landing-page.component.html',
   styleUrl: './landing-page.component.css'
 })
@@ -29,7 +29,7 @@ export class LandingPageComponent implements OnInit{
     )
   }
 
-  constructor(private authService: AuthService, private userService: UserService, private router: Router, private activeService: ActiveService) {}
+  constructor(private authService: AuthService, private router: Router, private activeService: ActiveService) {}
 
   //ATRIBUToS-------------------------------------------------------------------------------------------------------
 
@@ -52,8 +52,6 @@ export class LandingPageComponent implements OnInit{
       this.authService.getAccessToken().subscribe(
         {
           next: (response) => {
-            // this.authService.setActiveUser(user);
-            // this.authService.setToken(response.access_token);
             this.activeService.patchActive({userId: this.user.id, token: response.access_token}).subscribe(
               {
                 error: (error: Error) => {

@@ -1,6 +1,5 @@
 import { Component, EventEmitter, inject, Output } from '@angular/core';
-import { Router } from '@angular/router';
-import { FormBuilder, ReactiveFormsModule, FormGroup, Validators } from '@angular/forms';
+import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
 import { User } from '../../../entities/user';
 import { UserService } from '../../../services/user.service';
 
@@ -18,7 +17,7 @@ export class SignInComponent {
     topRanking: []
   }
 
-  constructor(private userService: UserService, private router: Router) {}
+  constructor(private userService: UserService) {}
 
   private fb = inject(FormBuilder);
 
@@ -87,7 +86,6 @@ export class SignInComponent {
         next: () => {
           alert('Se guardaron los datos con éxito');
           this.changeToLogIn();
-          // this.router.navigate(['/log in']);
         },
         error: (error: Error) => {
           alert('Hubo un error al intentar guardar los cambios: ' + error);
