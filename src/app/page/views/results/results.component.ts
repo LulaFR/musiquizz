@@ -34,22 +34,26 @@ export class ResultsComponent implements OnInit{
           this.getActiveUser(response.userId);
           this.score = response.newScore;
           this.gameMode = response.gameMode;
+          console.log('INIT');
+          // this.save();
         }
       }
     )
   }
 
   backToMenu() {
-    this.save();
+    // this.save();
     this.router.navigate(['/menu']);
   }
   
   playAgain() {
-    this.save();
+    // this.save();
     this.router.navigate(['/search']);
   }
 
   save() {
+    console.log('SAVE');
+    this.setOldRankings();
     this.arrangeRanking();
     if (this.user.id) {
       this.userService.putUser(this.user.id, this.user).subscribe(
@@ -64,9 +68,11 @@ export class ResultsComponent implements OnInit{
 
   arrangeRanking() {
     if (this.user.id && this.user.topRanking) {
+
       const ranking: Ranking = {
         score: this.score,
         gameMode: this.gameMode,
+        new: true,
         userId: this.user.id
       }
       
@@ -89,6 +95,7 @@ export class ResultsComponent implements OnInit{
         {
           next: (response) => {
             this.user = response;
+            this.save();
           },
           error: (error: Error) => {
             alert('Results Error: ' + error);
@@ -97,6 +104,19 @@ export class ResultsComponent implements OnInit{
       );
     }else {
       alert('Results Error: No se pudieron obtener los datos del usuario');
+    }
+  }
+
+  setOldRankings() {
+    console.log('Entro set old');
+    if (this.user.topRanking) {
+      console.log(this.user.topRanking.length);
+      for (let index = 0; index < this.user.topRanking.length; index++) {
+        this.user.topRanking[index].new = false;
+        console.log('Entro set old if for');
+        console.log(this.user.topRanking[index].score);
+        console.log(this.user.topRanking[index].new);
+      }
     }
   }
 

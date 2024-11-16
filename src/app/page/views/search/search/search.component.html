@@ -30,11 +30,22 @@
             
             <div id="resultsDiv" [class.active-search]="activeSearch">
                 @if (activeSearch) {
-                    @for (item of albums; track $index) {
-                        <section id="albumCard" class="albumItem" (click)="selectAlbumId(item.id)">
-                            <img src="{{item.imgUrl}}" alt="" height="100" width="100">
-                            <p>{{item.name}}</p>
-                        </section>
+                    @if (searchType == 'album') {
+
+                        @for (item of albums; track $index) {
+                            <section id="albumCard" class="albumItem" (click)="selectChoiceId(item.id)">
+                                <img src="{{item.imgUrl}}" alt="" height="100" width="100">
+                                <p>{{item.name}}</p>
+                            </section>
+                        }
+                    }
+                    @else if (searchType == 'artist') {
+                        @for (item of artists; track $index) {
+                            <section id="albumCard" class="albumItem" (click)="selectChoiceId(item.id)">
+                                <img src="{{item.imgUrl}}" alt="" height="100" width="100">
+                                <p>{{item.name}}</p>
+                            </section>
+                        }
                     }
                 }
             </div>
@@ -50,6 +61,10 @@
                         }
                         <p class="albumItem">Tracks: {{selectedAlbum.totalTracks}}</p>
                         
+                    }
+                    @else if (selectedArtist.id != '') {
+                        <img [src]="selectedArtist.imgUrl" alt="" width="180" height="180" class="albumItem">
+                        <p class="albumItem">{{selectedArtist.name}}</p>
                     }
                 </section>
                 <button [disabled]="disablePlayButton" id="playBtn" (click)="play()">Jugar</button>
@@ -69,5 +84,6 @@
 </body>
 
 @if (activatePlay) {
+    <!-- <app-game-preparation [tracks]="tracks" [totalTracks]="selectedAlbum.totalTracks"></app-game-preparation> -->
     <app-game-preparation [tracks]="tracks" [totalTracks]="selectedAlbum.totalTracks" (eventEmitter)="deactivatePlay()"></app-game-preparation>
 }

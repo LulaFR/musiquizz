@@ -4,4 +4,211 @@ body{
     background-position: center; /* Centra la imagen en ambos ejes*/
     background-size: cover; /* Asegura que la imagen cubra toda el área visible */
     background-attachment: fixed;
+
+    min-height: 100vh;
+}
+
+.header{
+    /* width: 100%; */
+    min-height: 10vh;
+
+    display: flex;
+    justify-content:space-between; /*posiciona el contenido a la derecha*/
+    /* margin-bottom: 0; */
+
+    margin: 0;
+    padding: 1% 2% 0.5% 2%;
+    top: 0;
+}
+
+#goBackBtn {
+    display: flex;
+    justify-self: end;
+
+    font-family: var(--tipografia-secundaria);
+    font-size: 1.4rem;
+    font-weight: 100;
+
+    color: black;
+    background-color: var(--violeta-oscuro-transparente);
+
+    /* margin-top: 1rem; */
+    margin-top: 0.1rem;
+    margin-right: 1rem;
+    margin-bottom: 0.3rem;
+    margin-left: 1.3rem;
+    border: solid 1px;
+    border-color: var(--violeta-oscuro);
+    border-radius: 0.4rem;
+    padding: 0.1rem 0.8rem;
+    padding-bottom: 0;
+
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+#goBackBtn:hover {
+    box-shadow: 1px 0px 5px var(--violeta-claro);
+    background-color: var(--violeta-claro);
+}
+
+main {
+    min-height: 100vh;
+}
+
+h1 {
+    width: fit-content;
+    height: fit-content;
+    z-index: 1;
+    position: fixed;
+
+    margin-left: 10%;
+    bottom: 69%;
+
+    transform: rotate(356deg);
+    font-family: var(--tipografia-principal);
+    font-size: 5rem;
+    color: var(--violeta-oscuro-transparente);
+    text-shadow: 1px 0px 5px var(--violeta-claro-transparente);
+}
+
+#container {
+    width: 90%;
+    min-height: 75vh;
+
+    display: flex;
+    justify-self: center;
+    align-self: center;
+
+    justify-content: space-evenly;
+    align-items: end;
+
+    /* background-color: var(--violeta-cla-transparente); */
+
+    margin-top: 1rem;
+    border-color: var(--violeta-claro);
+    border-radius: 7rem;
+    border-width: 0.5rem;
+    border-style: double;
+    padding-bottom: 1rem;
+
+    box-shadow: 1px 0px 5px var(--violeta-oscuro);
+    z-index: 0;
+    position: relative;
+}
+
+#rankingSection {
+    width: 65%;
+
+    display: flex;
+    flex-direction: column;
+}
+
+#rankingContainer {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    align-items: center;
+
+    margin-top: 0.5rem;
+}
+
+.ranking-row {
+    display: flex;
+    flex-direction: column;
+
+    align-items: center;
+}
+
+.position {
+    width: 5rem;
+    height: 5rem;
+
+
+    display: flex;
+
+    justify-content: center;
+    align-items: center;
+
+    border-width: 0.3rem;
+    border-style: double;
+    border-color: var(--violeta-claro);
+    border-radius: 50%;
+
+    background-color: var(--violeta-oscuro-transparente);
+    box-shadow: 1px 0px 5px var(--violeta-claro);
+
+    font-family: var(--tipografia-principal);
+    font-size: 2rem;
+
+    color: var(--violeta-claro);
+    text-shadow: 1px 0px 5px var(--violeta-claro);
+
+}
+
+.ranking-item {
+    font-family: var(--tipografia-secundaria);
+    font-size: 2rem;
+
+    color: var(--violeta-claro);
+    text-shadow: 1px 0px 5px var(--violeta-oscuro);
+}
+
+
+#rankingSection, #configSection {
+    height: 18rem;
+    
+    display: flex;
+    
+    background-color: var(--violeta-oscuro-transparente);
+    
+    border-color: var(--violeta-oscuro-transparente);
+    border-radius: 5rem;
+    border-width: 0.3rem;
+    border-style: solid;
+    
+    box-shadow: 1px 0px 5px var(--oscuro-claro);
+    box-sizing: border-box;
+}
+
+#configSection {
+    width: 25%;
+    
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+    gap: 0.5rem;
+    
+}
+
+h3 {
+    font-family: var(--tipografia-principal);
+    font-size: 2.3rem;
+    color: var(--violeta-claro-transparente);
+    text-shadow: 1px 0px 5px var(--violeta-oscuro);
+}
+
+.config-button {
+    width: 50%;
+    height: 25%;
+
+    margin-bottom: 0.5rem;
+    border-color: var(--violeta-oscuro);
+    border-radius: 20rem;
+    border-width: 0.1rem;
+    border-style: solid;
+
+    font-family: var(--tipografia-secundaria);
+    font-size: 1.2rem;
+    color: var(--violeta-claro);
+    
+    background-color: var(--violeta-oscuro);
+    /* box-shadow: 1px 0px 5px var(--violeta-claro); */
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.config-button:hover {
+    box-shadow: 1px 0px 5px var(--violeta-claro);
+    background-color: var(--violeta-claro);
+    color: var(--violeta-oscuro);
 }

@@ -5,6 +5,7 @@ import { OnInit } from '@angular/core';
 import { LocalStorageService } from '../../../services/local-storage.service';
 import { Album } from '../../../entities/album';
 import { Track } from '../../../entities/track';
+import { Artist } from '../../../entities/artist';
 import { GamePreparationComponent } from '../game-preparation/game-preparation.component';
 import { Router } from '@angular/router';
 import { GameService } from '../../../services/game.service';
@@ -36,14 +37,14 @@ export class SearchComponent implements OnInit{
   //ATRIBUTOS--------------------------------------------------------------------------------------------------------
   
   searchType: string = '' //para el placeholder
+
+  //ATRIBUTOS ÁLBUM
+  
   albums: Album[] = []; //para almacenar los álbums recuperados en una búsqueda
   album: Album = {
-    // albumType: '',
     totalTracks: 0,
     id: '',
     imgUrl: '',
-    // imgHeight: 0,
-    // imgWidth: 0,
     name: '',
     artistsNames: []
   }
@@ -61,6 +62,22 @@ export class SearchComponent implements OnInit{
     preview: '',
     img:  ''
   }
+  
+  //ATRIBUTOS ARTISTA
+
+  artists: Artist[] = [];
+  artist: Artist = {
+    name: '',
+    id: '',
+    imgUrl: '',
+  }
+  selectedArtist: Artist = {
+    name: '',
+    id: '',
+    imgUrl: '',
+  }
+
+
   activeSearch: boolean = false; //para ver si se muestra el scrollbar o no
   disablePlayButton: boolean = true; //para detectar si hay una opción elegida
   selectedAlbumId: string = ''; //id del álbum elegido
@@ -74,13 +91,27 @@ export class SearchComponent implements OnInit{
   //MÉTODOS DE BÚSQUEDA----------------------------------------------------------------------------------------------
   
   searchArtist(artist: string) {
-    this.spotifyService.searchArtist(this.lsService.getToken(), artist).subscribe(
+    this.artists = []; //limpio el array de artistas
+    console.log('Entro a search artist');
+    
+    this.spotifyService.searchArtist(this.token, artist).subscribe(
       {
         next: (response) => {
-          console.log(response);
+          console.log('Entro a next');
+          response.artists.items.map((item: any) => {
+            this.artist.id = item.id;
+            this.artist.imgUrl = item.images[0]?.url || '';
+            this.artist.name = item.name;
+            
+            this.artists.push({...this.artist}); //meto una copia del objeto al array de álbums
+            
+            this.activeSearch = true;
+          })
+
         },
         error: (error: Error) => {
-          alert('Hubo un error al buscar los artistas: ' + error);
+          // alert('Hubo un error al buscar los artistas: ' + error);
+          this.refreshToken(artist);
         }
       }
     );
@@ -88,9 +119,8 @@ export class SearchComponent implements OnInit{
   
   searchAlbum(album: string) {
     this.albums = []; //limpio el array de álbums
-    console.log('Entro a get album');
-    console.log(this.lsService.getToken());
-    // this.spotifyService.searchAlbum(this.lsService.getToken(), album).subscribe(
+    console.log('Entro a search album');
+
     this.spotifyService.searchAlbum(this.token, album).subscribe(
       {
         next: (response) => {
@@ -101,10 +131,6 @@ export class SearchComponent implements OnInit{
             this.album.imgUrl = item.images[0]?.url || '';
             this.album.name = item.name;
             item.artists.map((artist: any) => (this.album.artistsNames.push(artist.name)));
-            // this.album.albumType = item.album_type;
-            // this.album.imgHeight = item.images[0]?.height || 0;
-            // this.album.imgWidth = item.images[0]?.width || 0;
-            // this.album.artistsNames = item.artists.map((artist: any) => this.album.artistsNames.push(artist.name));
             
             this.albums.push({...this.album}); //meto una copia del objeto al array de álbums
             
@@ -114,14 +140,15 @@ export class SearchComponent implements OnInit{
           })
         },
         error: (error: Error) => {
-          alert('Hubo un error al buscar los álbums: ' + error);
+          // alert('Hubo un error al buscar los álbums: ' + error);
+          this.refreshToken(album);
         }
       }
     );
   }
   
   getAlbumTracks() {
-    this.albums = []; //limpio el array de álbums
+    this.tracks = []; //limpio el array de tracks
     this.spotifyService.getAlbumTracks(this.token, this.selectedAlbum.id).subscribe(
       {
         next: (response) => {
@@ -150,7 +177,8 @@ export class SearchComponent implements OnInit{
             this.activatePlay = true;
           },
           error: (error: Error) => {
-            alert('Hubo un error al intentar obtener los tracks: ' + error);
+            // alert('Hubo un error al intentar obtener los tracks: ' + error);
+            this.refreshToken(null);
           }
         }
       );
@@ -158,9 +186,18 @@ export class SearchComponent implements OnInit{
     
   //MÉTODOS DE SELECCIÓN---------------------------------------------------------------------------------------------
   
-  selectAlbumId(id: string) {
-    this.selectedAlbum = this.searchStoredAlbum(id);
-    this.disablePlayButton = false;
+  // selectAlbumId(id: string) {
+  //   this.selectedAlbum = this.searchStoredAlbum(id);
+  //   this.disablePlayButton = false;
+  // }
+
+  selectChoiceId(id: string) {
+    if(this.searchType == 'album') {
+      this.selectedAlbum = this.searchStoredChoice(id);
+      this.disablePlayButton = false; //PASAR FUERA DEL IF UNA VEZ QUE ESTÉ TERMINADO EL MODO ARTISTA
+    } else if(this.searchType == 'artist') {
+      this.selectedArtist = this.searchStoredChoice(id);
+    }
   }
   
   //MÉTODOS DE ACCIÓN---------------------------------------------------------------------------------------------
@@ -174,23 +211,39 @@ export class SearchComponent implements OnInit{
   }
 
   //MÉTODOS DE MODULARIZACIÓN----------------------------------------------------------------------------------------
-
-  searchStoredAlbum(id: string): Album {
-    return this.albums.filter((album) => (album.id == id))[0];
+  
+  // searchStoredAlbum(id: string): Album {
+  //   return this.albums.filter((album) => (album.id == id))[0];
+  // }
+  searchStoredChoice(id: string): any {
+    if (this.searchType == 'album') {
+      return this.albums.filter((album) => (album.id == id))[0];
+    } else if (this.searchType == 'artist') {
+      return this.artists.filter((artist) => (artist.id == id))[0];
+    }
   }
+  
+  deactivatePlay() {
+    // try {
+    //   this.activatePlay = false;
+    // } catch (error) {
+    //   console.log('ERROOOOOOOOR');
+    //   this.selectedAlbum = {
+    //     totalTracks: 0,
+    //     id: '',
+    //     imgUrl: '',
+    //     name: '',
+    //     artistsNames: []
+    //   }
+
+    //   this.tracks = [];
+    // }
+    this.activatePlay = false;
+  }
+  
+  //MÉTODOS DE TOKEN-------------------------------------------------------------------------------------------------
 
   getToken() {
-    // let token: string;
-    // this.authService.getToken().subscribe(
-    //   {
-    //     next: (response) => {
-    //       token = response;
-    //     },
-    //     error: (error: Error) => {
-    //       alert(error);
-    //     }
-    //   });
-    // return token;
     this.activeService.getActive().subscribe(
       {
         next: (r) => {
@@ -200,7 +253,35 @@ export class SearchComponent implements OnInit{
     )
   }
 
-  deactivatePlay() {
-    this.activatePlay = false;
+  refreshToken(previousSearch: string | null) {
+    this.authService.getAccessToken().subscribe(
+      {
+        next: (response) => {
+          this.token = response.access_token;
+          if (previousSearch) {
+            this.saveRefreshedToken(previousSearch);
+          } else {
+            this.getAlbumTracks(); //si el token se vence entre que se busca y se selecciona el álbum
+          }                       //poco probable que pase, pero no imposible :p
+        },
+        error: (error: Error) => {
+          alert('Refresh Token Error: ' + error);
+        }
+      }
+    )
+  }
+  
+  saveRefreshedToken(previousSearch: string) {
+    this.activeService.patchActive({token: this.token}).subscribe(
+      {
+        next: (response) => {
+          this.searchAlbum(previousSearch);
+        },
+        error: (error: Error) => {
+          alert('Save Refreshed Token Error: ' + error);
+        }
+      }
+    )
+
   }
 }

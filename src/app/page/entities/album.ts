@@ -1,13 +1,10 @@
 export interface Album {
-    // albumType: string;
     totalTracks: number;
     id: string;
     imgUrl: string;
-    // imgHeight: number;
-    // imgWidth: number;
     name: string;
     artistsNames: string[];
-    //Se guardan en el componente search, no en la interfaz
+    //Se guardan en el componente search, implementar si se quieren ampliar los resultados de búsqueda
     // href: string;
     // limit: number;
     // next: string;

@@ -13,7 +13,7 @@ import { Output, Input } from '@angular/core';
 export class SearchFormComponent {
 
   @Input()
-  gameMode : string = 'Buscar';
+  gameMode : string = '';
 
   @Output()
   eventEmitter = new EventEmitter<string>();

@@ -15,6 +15,8 @@ export class RoundComponent implements OnChanges{
 
   constructor(private router: Router) {}
 
+  //ATRIBUTOS--------------------------------------------------------------------------------------------------------
+
   @Input()
   round: Round = {
     question: {
@@ -43,16 +45,39 @@ export class RoundComponent implements OnChanges{
   disabledOpt: boolean = false;
   disabledNext: boolean = true;
 
-  chooseOption(id: string) {
+  option1: boolean = false;
+  option2: boolean = false;
+  option3: boolean = false;
+  option4: boolean = false;
+
+  //MÉTODOS-----------------------------------------------------------------------------------------------------------
+
+  chooseOption(id: string, option: number) {
     this.score = 0;
     if (id === this.round.question.id) {
-      alert('¡¡Respuesta correcta!!');
+      this.showAnswer(true, option);
+      // alert('¡¡Respuesta correcta!!');
       this.score = 10;
     } else {
+      // this.showAnswer(false, option);
       alert('Opción incorrecta. Respuesta correcta: ' + this.round.question.name);
     }
     this.disabledOpt = true;
     this.disabledNext = false;
+  }
+
+  showAnswer(correct: boolean, option: number) {
+    if(correct) {
+      if (option == 1) {
+        this.option1 = true;
+      } else if (option == 2) {
+        this.option2 = true;
+      } else if (option == 3) {
+        this.option3 = true;
+      } else if (option == 4) {
+        this.option4 = true;
+      }
+    }
   }
 
 
@@ -62,6 +87,10 @@ export class RoundComponent implements OnChanges{
       this.disabledOpt = false;
       this.disabledNext = true
     }
+    this.option1 = false;
+    this.option2 = false;
+    this.option3 = false;
+    this.option4 = false;
   }
 
   updateAudioSrc() {

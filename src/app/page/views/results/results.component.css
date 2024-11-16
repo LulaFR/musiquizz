@@ -78,7 +78,7 @@ p {
 
     display: flex;
 
-    margin: 0.5rem 0 0 1rem;
+    /* margin: 0.5rem 0 0 1rem; */
 
     font-size: 3rem;
 }
@@ -86,11 +86,25 @@ p {
 #scoreSection {
     width: 100%;
     height: 53%;
+
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+}
+
+.rankingRow {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
 }
 
 #continue {
     width: 100%;
     height: 45%;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
 }
 
 .button {
@@ -103,11 +117,11 @@ p {
     align-items: center;
 
     width: 90%;
-    height: 40%;
+    height: 48%;
 
     font-weight: 100;
     color: black;
-    background-color: var(--verde-claro-transparente);
+    background-color: var(--verde-oscuro-transparente);
 
     margin-top: 0.58rem;
     border: solid 1px;
@@ -132,7 +146,7 @@ p {
     
 }
 
-#scoreSection, #continue, #rankingSection {
+#scoreSection,#rankingSection {
     border-style: solid;
     border-radius: 0.2rem;
     border-width: 0.1rem;
@@ -145,10 +159,26 @@ p {
 
 p, .button {
     font-family: var(--tipografia-secundaria);
+
+    width: 100%;
+}
+
+.position {
+    margin-left: 1rem;
 }
 
 h3 {
     font-size: 2rem;
     margin-left: 1rem;
     font-family: var(--tipografia-principal);
+}
+
+.new {
+    background-color: var(--verde-claro);
+    border-color: var(--verde-claro-transparente);
+    border-width: 1rem;
+    border-style: solid;
+    border-radius: 0.2rem;
+
+    box-shadow: 1px 0px 5px var(--verde-claro-transparente);
 }

@@ -1,4 +1,37 @@
 <body>
+    <head class="header">
+        <button id="goBackBtn" (click)="goBack()">Atrás</button>
+    </head>
+
+    <main>
+        <h1>{{user.id}}</h1>
+
+        <div id="container">
+            <section id="rankingSection">
+
+                <h3>R a n k i n g</h3>
+                <div id="rankingContainer">
+
+                    @for (item of user.topRanking; track $index) {
+                        <div [class.new]="item.new" class="ranking-row">
+                            <p class="position">{{$index + 1}}</p>
+                            <p class="ranking-item">{{item.score}} puntos</p>
+                            <p class="ranking-item">{{item.gameMode}} mode</p>
+                            
+                        </div>
+                    }
+                </div>
+            </section>
+
+            <section id="configSection">
+                <h3>Configuración</h3>
+                <button class="config-button">Modificar usuario</button>
+                <button class="config-button" (click)="logOut()">Cerrar sesión</button>
+            </section>
+
+        </div>
+    </main>
+
     <footer>
         <div class="footer-div">
             <a class="footer-link" href="https://github.com/LulaFR">Luciana Fenoy Rivas</a> ●

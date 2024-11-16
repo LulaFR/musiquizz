@@ -10,13 +10,21 @@
       "password": "121212",
       "topRanking": [
         {
-          "score": 60,
+          "score": 100,
           "gameMode": "album",
+          "new": false,
           "userId": "Lula12"
         },
         {
-          "score": 50,
+          "score": 90,
           "gameMode": "album",
+          "new": false,
+          "userId": "Lula12"
+        },
+        {
+          "score": 90,
+          "gameMode": "album",
+          "new": false,
           "userId": "Lula12"
         }
       ]
@@ -24,12 +32,50 @@
     {
       "id": "Gostita",
       "password": "070707",
-      "topRanking": []
+      "topRanking": [
+        {
+          "score": 120,
+          "gameMode": "album",
+          "new": false,
+          "userId": "Gostita"
+        },
+        {
+          "score": 90,
+          "gameMode": "album",
+          "new": true,
+          "userId": "Gostita"
+        },
+        {
+          "score": 70,
+          "gameMode": "album",
+          "new": false,
+          "userId": "Gostita"
+        }
+      ]
     },
     {
       "id": "chechu31",
       "password": "313131",
-      "topRanking": []
+      "topRanking": [
+        {
+          "score": 100,
+          "gameMode": "album",
+          "new": true,
+          "userId": "chechu31"
+        },
+        {
+          "score": 70,
+          "gameMode": "album",
+          "new": false,
+          "userId": "chechu31"
+        },
+        {
+          "score": 70,
+          "gameMode": "album",
+          "new": false,
+          "userId": "chechu31"
+        }
+      ]
     },
     {
       "id": "gusti05",
@@ -59,16 +105,41 @@
     {
       "id": "Nica123",
       "password": "123456",
-      "topRanking": []
+      "topRanking": [
+        {
+          "score": 10,
+          "gameMode": "album",
+          "new": true,
+          "userId": "Nica123"
+        }
+      ]
+    },
+    {
+      "id": "lucre",
+      "password": "12345",
+      "topRanking": [
+        {
+          "score": 110,
+          "gameMode": "album",
+          "new": true,
+          "userId": "lucre"
+        },
+        {
+          "score": 50,
+          "gameMode": "album",
+          "new": false,
+          "userId": "lucre"
+        }
+      ]
     }
   ],
   "active": [
     {
-      "userId": "Lula12",
-      "token": "BQCHItA6txeKjA1IlSqgraidipUD9DhQsfEpUzZT7TZO3nraxDeGNLZ3VACj1bC8Ck4cOpTkUfMTW7zSiCqCb8N5EZj_sdHKuRngmXXeVKJE7q0nz_Q",
+      "userId": "lucre",
+      "token": "BQBIO6tau3aGU2ZzbSGyC-T4whNIXv8g3n-9Fu5wgbioXcy2jS581SEptTdxJHwo2vkCAVbVvKeo5OicNWlkcUlzFtfkmsvibC1VJ8bpfGc7iUNFqtY",
       "gameMode": "album",
-      "id": "active",
-      "newScore": 50
+      "newScore": 110,
+      "id": "active"
     }
   ]
 }

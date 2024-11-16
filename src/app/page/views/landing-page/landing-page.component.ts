@@ -31,8 +31,8 @@ export class LandingPageComponent implements OnInit{
 
   constructor(private authService: AuthService, private userService: UserService, private router: Router, private activeService: ActiveService) {}
 
-  //ATRIBUTES-------------------------------------------------------------------------------------------------------
-  
+  //ATRIBUToS-------------------------------------------------------------------------------------------------------
+
   private user: User = {
     id: '',
     password: '',
@@ -42,7 +42,7 @@ export class LandingPageComponent implements OnInit{
   disableLogIn: boolean = false;
   disableSignIn: boolean = true;
   
-  //METHODS-------------------------------------------------------------------------------------------------------
+  //MÉTODOS...-------------------------------------------------------------------------------------------------------
 
   //Recibo el user desde log in
   logIn(user: User) {

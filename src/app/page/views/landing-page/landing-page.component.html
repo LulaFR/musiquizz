@@ -7,15 +7,6 @@
 
         <div id="landing-info">
 
-            <section id="description-div">
-                <p id="site-description">
-                    ¿Qué tan rápido reconocés las canciones de tus artistas favoritos? <br>
-                    ¿Conocés los gustos musicales de tus amigos? <br>
-                    ¡Ponete a prueba con Musiquizz y comprobalo! ;)
-                </p>   
-            </section>
-            
-        
             <section id="login">
                 @if (disableSignIn) {
                     <app-log-in (eventEmitter)="logIn($event)"></app-log-in>
@@ -26,6 +17,14 @@
                     <button class="login-link" (click)="activateLogIn()">Ya tenés una cuenta? Iniciá sesión</button>
                 }
             </section>
+
+            <section id="description-div">
+                <p id="site-description">
+                    ¿Qué tan rápido reconocés las canciones de tus artistas favoritos? ¿Conocés los gustos musicales de tus amigos? ¡Ponete a prueba con Musiquizz y comprobalo! ;)
+                </p>   
+            </section>
+            
+        
 
         </div>
 
@@ -40,4 +39,4 @@
         </div>
     </footer>
 </body>
-
+    

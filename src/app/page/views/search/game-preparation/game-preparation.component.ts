@@ -56,8 +56,9 @@ export class GamePreparationComponent implements OnInit{
 
   generateGame() {
     try {
-
-      for (let index = 0; index < this.totalTracks; index++) {
+      console.log('ACÁ LULA');
+      // for (let index = 0; index < this.totalTracks; index++) {
+      for (let index = 0; index < (this.totalTracks <= 12 ? this.totalTracks : 12); index++) { //12 rondas como máximo
         this.round.options = []; //limpio el array de opciones;
         
         this.provisoryTracks = [...this.tracks] //cargo el array de tracks provisorio
@@ -66,10 +67,12 @@ export class GamePreparationComponent implements OnInit{
         this.mixOptions();
         this.game.rounds.push({...this.round}); //coloco la ronda en el juego
       }
+      
       this.saveGame();
-      this.mostrar();
+      // this.mostrar();
       this.startGame();
-    } catch(error: any) {
+
+    } catch(error) {
       alert(error);
       this.eventEmitter.emit();
     }
@@ -112,20 +115,15 @@ export class GamePreparationComponent implements OnInit{
     }
   }
 
-  mostrar() {
-    for (let index = 0; index < this.game.rounds.length; index++) {
-      console.log('RONDA ' + index);
-      console.log('Canción: ' + this.game.rounds[index].question.name);
-      for (let index2 = 0; index2 < 4; index2++) {
-        console.log('Opción ' + (index2 + 1) + ': ' + this.game.rounds[index].options[index2].name);
-      }
-      console.log('============================')
-    }
-  }
-
-  // mostrarUnselected() {
-  //   console.log('UNSELECTED WOWOWOWOWOOWW');
-  //   this.unselectedTracks.map((track) => console.log(track.name));
+  // mostrar() {
+  //   for (let index = 0; index < this.game.rounds.length; index++) {
+  //     console.log('RONDA ' + index);
+  //     console.log('Canción: ' + this.game.rounds[index].question.name);
+  //     for (let index2 = 0; index2 < 4; index2++) {
+  //       console.log('Opción ' + (index2 + 1) + ': ' + this.game.rounds[index].options[index2].name);
+  //     }
+  //     console.log('============================')
+  //   }
   // }
 
   mixOptions() {

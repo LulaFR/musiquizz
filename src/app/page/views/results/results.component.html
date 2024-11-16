@@ -35,7 +35,12 @@
 
                     <section id="rankingBoard">
                         @for (item of user.topRanking; track $index) {
-                            <p>{{$index + 1}}. {{item.score}} pts. ||  {{item.gameMode}} mode</p>
+                            <div [class.new]="item.new" class="rankingRow">
+                                <p class="position">{{$index + 1}}.</p>
+                                <p>{{item.score}} pts.</p>
+                                <p>{{item.gameMode}} mode</p>
+
+                            </div>
                         }
                     </section>
                     
