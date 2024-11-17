@@ -140,10 +140,10 @@
   ],
   "active": [
     {
-      "userId": "Lula12",
-      "token": "BQA6f3TWvXRJhD1wy5o3dirr9s3PmJ6igpx7hlqKxeVzMWjsoy8-kpXcbpSKcSCSW5T0k0iTZoZbkqMpTH0PB0vUp2PZZKQeQb5LTNMCmlXaSIy0SF4",
-      "gameMode": "album",
-      "newScore": 30,
+      "userId": "",
+      "token": "",
+      "gameMode": "",
+      "newScore": 0,
       "id": "active"
     }
   ]
