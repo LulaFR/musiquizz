@@ -1,0 +1,47 @@
+#container {
+    display: flex;
+    flex-direction: column;
+
+    justify-content: center;
+    align-items: center;
+}
+
+#errorSvg {
+    width: 20rem;
+    height: 20rem;
+
+    display: flex;
+}
+
+h1 {
+    font-family: var(--tipografia-principal);
+}
+
+h3 {
+    font-family: var(--tipografia-secundaria);
+}
+
+button {
+    width: fit-content;
+    height: fit-content;
+
+    margin-top: 3rem;
+    padding: 0.3rem 0.5rem;
+
+    font-family: var(--tipografia-secundaria);
+    font-size: 1rem;
+    font-weight: 100;
+
+    border: solid 1px;
+    border-color: var(--violeta-oscuro);
+    border-radius: 0.4rem;
+
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    background-color: var(--violeta-oscuro-transparente);
+}
+
+button:hover {
+    box-shadow: 1px 0px 5px var(--violeta-oscuro-transparente);
+    background-color: var(--violeta-oscuro);
+    color: white;
+}

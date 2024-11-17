@@ -124,6 +124,9 @@ audio::-webkit-media-controls-panel {
     border-color: var(--violeta-oscuro-transparente);
     background-color: var(--violeta-claro);
     box-shadow: 0 4px 6px var(--violeta-claro);
+
+    color: var(--violeta-oscuro);
+    text-shadow: 1px 0px 5px var(--violeta-oscuro);
 }
 
 #next {

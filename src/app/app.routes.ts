@@ -10,6 +10,7 @@ import { UserComponent } from './page/views/user/user.component';
 import { GamePreparationComponent } from './page/views/search/game-preparation/game-preparation.component';
 import { GameComponent } from './page/views/game/game/game.component';
 import { ResultsComponent } from './page/views/results/results.component';
+import { ErrorComponent } from './page/views/error/error/error.component';
 
 export const routes: Routes = [
     {
@@ -47,6 +48,6 @@ export const routes: Routes = [
     },
     {
         path: '**',
-        component: LandingPageComponent
+        component: ErrorComponent
     }
 ];
